@@ -6,9 +6,7 @@
 
 const linkedListValues = (head) => {
   let result = [];
-
   getValues(head, result);
-
   return result;
 };
 
@@ -19,6 +17,14 @@ const getValues = (head, result) => {
 };
 
 //test_00:
+
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
+}
+
 const a = new Node("a");
 const b = new Node("b");
 const c = new Node("c");
