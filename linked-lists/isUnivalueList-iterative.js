@@ -12,17 +12,11 @@ class Node {
 }
 
 const isUnivalueList = (head) => {
-  let counter = {};
   let current = head;
 
   while (current) {
-    if (counter[current.val]) {
-      counter[current.val]++;
-    } else {
-      counter[current.val] = 1;
-    }
+    if (current.val !== head.val) return false;
     current = current.next;
   }
-
-  return Object.keys(counter).length > 1 ? false : true;
+  return true;
 };
