@@ -13,7 +13,7 @@ class Node {
 
 const longestStreak = (head) => {
   let longestStreak = 0;
-  let currentStreak = 1;
+  let currentStreak = 0;
   let current = head;
   let prevVal = null;
 
