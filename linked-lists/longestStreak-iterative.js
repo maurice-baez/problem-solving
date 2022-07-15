@@ -12,20 +12,20 @@ class Node {
 }
 
 const longestStreak = (head) => {
-  let longest = 0;
+  let longestStreak = 0;
+  let currentStreak = 1;
   let current = head;
+  let prevVal = null;
 
   while (current) {
-    let currentStreak = 1;
-
-    while (current.next) {
-      if (current.next.val === current.val) {
-        currentStreak++;
-        current = current.next;
-      } else break;
+    if (current.val === prevVal) {
+      currentStreak++;
+    } else {
+      currentStreak = 1;
     }
+    longestStreak = Math.max(longestStreak, currentStreak);
+    prevVal = current.val;
     current = current.next;
-    longest = Math.max(currentStreak, longest);
   }
-  return longest;
+  return longestStreak;
 };
