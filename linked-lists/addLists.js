@@ -30,33 +30,25 @@
 // };
 
 const addLists = (head1, head2) => {
-  let dummyHead = new Node(null);
+  const dummyHead = new Node(null);
   let tail = dummyHead;
   let current1 = head1;
   let current2 = head2;
   let carry = 0;
 
-  while (current1 || current2) {
-    let current1Val = current1 ? current1.val : 0;
-    let current2Val = current2 ? current2.val : 0;
+  while (current1 || current2 || carry) {
+    const current1Val = current1 ? current1.val : 0;
+    const current2Val = current2 ? current2.val : 0;
 
-    let sum = current1Val + current2Val + carry;
+    const sum = current1Val + current2Val + carry;
+    const digit = sum % 10;
+    carry = sum > 9 ? 1 : 0;
 
-    if (sum > 9) {
-      tail.next = new Node(sum % 10);
-      carry = 1;
-    } else {
-      tail.next = new Node(sum);
-      carry = 0;
-    }
-
+    tail.next = new Node(digit);
     tail = tail.next;
 
     current1 = current1 ? current1.next : null;
     current2 = current2 ? current2.next : null;
   }
-
-  if (carry) tail.next = new Node(1);
-
   return dummyHead.next;
 };
