@@ -21,15 +21,13 @@ const longestSubstring = (str) => {
   let max = 0;
 
   while (j < str.length) {
-    let currStreak = 0;
     let set = new Set(str[i]);
 
     while (!set.has(str[j]) && j < str.length) {
       set.add(str[j]);
       j++;
     }
-    currStreak = j - i;
-    max = Math.max(currStreak, max);
+    max = Math.max(max, j - i);
     i = j;
     j++;
   }
