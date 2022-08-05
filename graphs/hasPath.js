@@ -22,28 +22,33 @@
 
 //recursive
 
-// const hasPath = (graph, src, dst) => {
-//   if (src === dst) return true;
+const hasPath = (graph, src, dst, visited = new Set()) => {
+  // if(visited.has(src)) return false;
+  if (src === dst) return true;
 
-//   for (let neighbor of graph[src]) {
-//     if (hasPath(graph, neighbor, dst)) return true;
-//   }
-//   return false;
-// };
+  visited.add(src);
 
-//BFS
-
-const hasPath = (graph, src, dst) => {
-  const queue = [src];
-
-  while (queue.length) {
-    const current = queue.shift();
-
-    if (current === dst) return true;
-
-    for (let neighbor of graph[current]) {
-      queue.push(neighbor);
+  for (let neighbor of graph[src]) {
+    if (!visited.has(neighbor)) {
+      if (hasPath(graph, neighbor, dst, visited)) return true;
     }
   }
   return false;
 };
+
+//BFS
+
+// const hasPath = (graph, src, dst) => {
+//   const queue = [src];
+
+//   while (queue.length) {
+//     const current = queue.shift();
+
+//     if (current === dst) return true;
+
+//     for (let neighbor of graph[current]) {
+//       queue.push(neighbor);
+//     }
+//   }
+//   return false;
+// };
